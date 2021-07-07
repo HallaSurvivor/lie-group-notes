@@ -1,0 +1,363 @@
+\documentclass[12pt]{book}
+
+%{{{ Preamble
+
+%%%%%%%%{{{ Packages
+%%%%%%%%%%%%%%%%%%%%
+
+% the default margins have always felt big to me
+% if beamer: comment this out
+\usepackage[papersize={6in,9in}]{geometry}
+
+% we're gay, we like colors
+% if beamer: comment this out
+\usepackage[dvipsnames]{xcolor}
+
+% we aren't animals - we might use more than ASCII
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% obligatory math environments, symbols, and theorems
+\usepackage{amsmath, amssymb, amsthm}
+
+% moar symbols
+\usepackage{stmaryrd}
+
+% obligatory citation library
+\usepackage{natbib}
+
+% sometimes you gotta draw stuff, like _c_ommutative _d_iagrams.
+\usepackage{tikz, tikz-cd}
+
+% sometimes you gotta put in pretty pictures
+\usepackage{graphicx}
+
+% sometimes you gotta write code
+\usepackage{listings}
+
+% proof trees are useful
+\usepackage{proof}
+
+% use \mathbbm for bb-numerals, use \bm for bold math symbols.
+\usepackage{bbm, bm}
+
+% I like clickable links in pdfs
+\usepackage{hyperref}
+
+% Convenient todo-notes and missing figure boxes
+\usepackage{todonotes}
+
+% remove paragraph indentation
+\usepackage{parskip}
+
+% allow fancy stuff (custom headers and footers)
+\usepackage{fancyhdr}
+
+% pretty boxes are pretty
+\usepackage[framemethod=TikZ]{mdframed}
+
+\usepackage{exercise}
+
+%}}}
+
+%%%%%%%%{{{ Formatting
+%%%%%%%%%%%%%%%%%%%%%%
+
+% prevent orphans/widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% never break words across lines -- hyphens are stupid
+\hyphenpenalty 10000
+\exhyphenpenalty 10000
+
+% forcibly overlay two symbols on top of each other
+% used for the \cupdot and \bigcupdot commands
+% shamelessly taken from here:
+% https://tex.stackexchange.com/questions/3964/
+%   mathematical-symbol-for-disjoint-set-union
+\makeatletter
+\def\moverlay{\mathpalette\mov@rlay}
+\def\mov@rlay#1#2{\leavevmode\vtop{%
+   \baselineskip\z@skip \lineskiplimit-\maxdimen
+   \ialign{\hfil$\m@th#1##$\hfil\cr#2\crcr}
+}}
+\newcommand{\charfusion}[3][\mathord]{
+    #1{\ifx#1\mathop\vphantom{#2}\fi
+        \mathpalette\mov@rlay{#2\cr#3}
+      }
+    \ifx#1\mathop\expandafter\displaylimits\fi}
+\makeatother
+
+
+%}}}
+
+%%%%%%%%{{{ Environments
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+% shamelessly stolen from 
+% https://tex.stackexchange.com/
+% questions/291346/marking-the-end-of-a-definition
+
+\theoremstyle{definition}
+\newtheorem{defn/}{Definition}
+\newtheorem*{defn*/}{Definition}
+
+\newcommand{\defnendsymbol}%
+{%
+  \mathbin{\rotatebox[origin=c]{-45}{$\parallel$}}%
+}
+
+\newenvironment{defn}
+  {\renewcommand{\qedsymbol}{$\defnendsymbol$}%
+   \pushQED{\qed}\begin{defn/}}
+  {\popQED\end{defn/}}
+
+\newenvironment{defn*}
+  {\renewcommand{\qedsymbol}{$\defnendsymbol$}%
+   \pushQED{\qed}\begin{defn*/}}
+  {\popQED\end{defn*/}}
+
+%}}}
+
+%%{{{ Aliases and Commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%{{{ blackboard letters
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+%}}}
+
+%{{{ categories
+\newcommand*{\catFont}[1]{\mathsf{#1}} 
+\newcommand*{\catVarFont}[1]{\mathcal{#1}}
+
+\newcommand{\Set}{\catFont{Set}}
+\newcommand{\Top}{\catFont{Top}}
+\newcommand{\Cat}{\catFont{Cat}}
+\newcommand{\Grp}{\catFont{Grp}}
+\newcommand{\Mod}{\catFont{Mod}}
+\newcommand{\Sub}{\catFont{Sub}}
+\newcommand{\FP}{\catFont{FP}}
+\newcommand{\Pos}{\catFont{Pos}}
+\newcommand{\FinSet}{\catFont{FinSet}}
+
+\newcommand{\cata}{\catVarFont{A}}
+\newcommand{\catb}{\catVarFont{B}}
+\newcommand{\catc}{\catVarFont{C}}
+\newcommand{\catd}{\catVarFont{D}}
+\newcommand{\catx}{\catVarFont{X}}
+\newcommand{\caty}{\catVarFont{Y}}
+\newcommand{\catZ}{\catVarFont{Z}}
+%}}}
+
+%{{{ "operators" (words in math mode)
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\coker}{coker}
+
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\Ext}{Ext}
+%}}}
+
+%{{{ arrows
+\newcommand{\hookr}{\hookrightarrow}
+\newcommand{\hookl}{\hookleftarrow}
+\newcommand{\monor}{\rightarrowtail}
+\newcommand{\monol}{\leftarrowtail}
+\newcommand{\epir}{\twoheadrightarrow}
+\newcommand{\epil}{\twoheadleftarrow}
+\newcommand{\regepir}{\rightarrowtriangle}
+\newcommand{\regepil}{\leftarrowtriangle}
+%}}}
+
+%{{{ categorical limits
+\newcommand{\limr}{\varinjlim}
+\newcommand{\liml}{\varprojlim}
+%}}}
+
+%{{{ analysis
+\DeclareMathOperator{\dif}{d \!}
+\DeclareMathOperator{\Dif}{D \!}
+\newcommand{\del}{\partial}
+\newcommand*{\abs}[1]{\left \lvert #1 \right \rvert}
+\newcommand*{\norm}[1]{\left \lVert #1 \right \rVert}
+\newcommand*{\eval}[1]{\left . #1 \right \rvert}
+
+% partial derivative command (taken from commath package)
+% usage: \pd[n]{f}{x}
+\newcommand*{\pd}[3][]{\ensuremath{
+\ifinner
+\tfrac{\partial{^{#1}}#2}{ \partial{#3^{#1}} }
+\else
+\dfrac{\partial{^{#1}}#2}{ \partial{#3^{#1}} }
+\fi
+}}
+
+% ordinary derivative command (taken from commath package)
+% usage: \od[n]{f}{x}
+\newcommand*{\od}[3][]{\ensuremath{
+\ifinner
+\tfrac{\dif{^{#1}}#2}{ \dif{#3^{#1}} }
+\else
+\dfrac{\dif{^{#1}}#2}{ \dif{#3^{#1}} }
+\fi
+}}
+
+% restriction of a map
+\newcommand*{\restrict}{\upharpoonright}
+
+% almost everywhere
+\renewcommand*{\ae}{~\mathrm{a.e.}}
+
+% disjoint union
+\newcommand{\dotcup}{\charfusion[\mathbin]{\cup}{\cdot}}
+\newcommand{\bigdotcup}{\charfusion[\mathop]{\bigcup}{\cdot}}
+
+% I can't ever remember which one it is... 
+% So just have both so I can't be wrong
+\newcommand{\cupdot}{\charfusion[\mathbin]{\cup}{\cdot}}
+\newcommand{\bigcupdot}{\charfusion[\mathop]{\bigcup}{\cdot}}
+
+% indicator function
+% change to \chi, make it a subscript, etc. as necessary
+\newcommand{\ind}[1]{\mathbbm{1}[#1]}
+
+% epsilon alias... I really am this lazy
+\newcommand{\eps}{\epsilon}
+
+%}}}
+
+%{{{ algebra
+\newcommand{\meet}{\wedge}
+\newcommand{\join}{\vee}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\normal}{\vartriangleleft}
+%}}}
+
+%{{{ topology
+\newcommand*{\interior}[1]{ {\kern0pt#1}^{\mathrm{o}} }
+%}}}
+
+%{{{ logic
+\renewcommand{\diamond}{\lozenge}
+\newcommand*{\denote}[1]{\llbracket #1 \rrbracket}
+
+% \godelnum command, stolen from 
+% https://www.logicmatters.net/
+% 	latex-for-logicians/symbols/corner-quotes-for-godel-numbers/
+\newbox\gnBoxA
+\newdimen\gnCornerHgt
+\setbox\gnBoxA=\hbox{$\ulcorner$}
+\global\gnCornerHgt=\ht\gnBoxA
+\newdimen\gnArgHgt
+\def\godelnum #1{%
+\setbox\gnBoxA=\hbox{$#1$}%
+\gnArgHgt=\ht\gnBoxA%
+\ifnum     \gnArgHgt<\gnCornerHgt \gnArgHgt=0pt%
+\else \advance \gnArgHgt by -\gnCornerHgt%
+\fi \raise\gnArgHgt\hbox{$\ulcorner$} \box\gnBoxA %
+\raise\gnArgHgt\hbox{$\urcorner$}}
+
+% coding function
+\newcommand*{\code}[1]{\langle #1 \rangle}
+
+%}}}
+
+%{{{ misc symbols
+\newcommand{\teq}{\triangleq}
+\newcommand{\fin}{ \subseteq_{\text{fin}} }
+
+% important words
+\newcommand*{\important}[1]{\textcolor{MidnightBlue}{#1}}
+
+% define a "danger" symbol for use when something surprising might occur
+% https://tex.stackexchange.com/questions/159669/
+% 	how-to-print-a-warning-sign-triangle-with-exclamation-point
+% use outside of math mode!
+
+\newcommand*{\TakeFourierOrnament}[1]{{%
+\fontencoding{U}\fontfamily{futs}\selectfont\char#1}}
+\newcommand*{\danger}{\TakeFourierOrnament{66}}
+
+% I always forget if this is named "danger" or "warning"...
+% So just name it both so I can't be wrong
+\newcommand*{\warning}{\danger}
+
+%}}}
+
+%}}}
+
+%% Stuff special to the book
+
+% one file per chapter
+\usepackage{subfiles}
+
+% get indices and glossaries working
+% shamelessly stolen from
+% https://tex.stackexchange.com/questions/145944/make-symbol-index-with-description
+\usepackage[nomain,section,sort=def]{glossaries}
+\usepackage{glossary-mcols}
+
+\setglossarystyle{mcolindex}
+\renewcommand{\glspostdescription}{\dotfill}
+
+\newglossary[LieGrps]{LieGroups}{liegrp-gls}{liegrp-glo}{Lie Groups}
+
+\makeglossaries
+
+% Define a command to define Lie Groups
+% Syntax: \newliegrp[options]{label}{lie group symbol}
+
+\newcommand*{\newliegrp}[3][]{%
+  \newglossaryentry{#2}{type=LieGroups,%
+    name={$#3$},text={#3},description={},#1}%
+}
+
+% Define lie groups
+
+\newliegrp{GLn}{\mathsf{GL}(n)}
+
+
+\theoremstyle{definition} %% Don't italicize the theorem statement
+\newtheorem{thm}{Theorem}[chapter]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lemma}[thm]{Lemma}
+
+\numberwithin{Exercise}{chapter} %% Reset to Exercise 1 at each chapter
+
+% make questions use a,b,c instead of 1,2,3 for parts
+\renewcommand{\QuestionNB}{\alph{Question}.\ }
+\renewcommand{\theQuestion}{\alph{Question}.}
+
+%% make exercises start with a newline
+\renewcommand{\ExerciseHeader}{\textbf{\ExerciseName~\ExerciseHeaderNB} (\ExerciseTitle)\smallskip\newline}
+\renewcommand{\AtBeginExercise}{\hspace{-0.66em}}
+
+%}}}
+
+%% Heading
+\author{John Baez and Chris Grossack}
+\title{Lie Theory Through Examples}
+
+\begin{document}
+\maketitle
+\pagebreak
+
+\tableofcontents
+
+\subfile{chapters/intro}
+\subfile{chapters/manifolds}
+
+
+
+% \newpage
+% \bibliographystyle{plain}
+% \bibliography{\string~/.bib.bib}
+
+\end{document}
