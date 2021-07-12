@@ -5,3 +5,4 @@ ignore the files that get autocreated by latexmk
 *.aux
 *.fdb_latexmk
 *.out
+*.fls
