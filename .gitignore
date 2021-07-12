@@ -6,3 +6,4 @@ ignore the files that get autocreated by latexmk
 *.fdb_latexmk
 *.out
 *.fls
+*.log
