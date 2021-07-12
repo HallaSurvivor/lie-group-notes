@@ -212,8 +212,74 @@ under vector addition.
   The ($n \times n$, real) \important{General Linear Group} 
 
   \[ \mathsf{GL}_n(\R) = \big \{ \text{invertible $n \times n$ matrices with entries in $\R$} \big \} \]
+
+  is a Lie group with matrix multiplication as its operation.
 \end{defn}
 
+This is clearly a group, but why is it a manifold, and why are multiplying
+and inverting matrices smooth operations?
+
+The key observation is that $\mathsf{GL}_n(\R)$ is an open subset of 
+$\mathcal{M}_n(\R)$ (the space of all matrices), which is an $n^2$-dimensional
+vector space (and thus a manifold).
+
+This is because $\text{det} : \mathcal{M}_n(\R) \to \R$ is a polynomial in
+the entires of the matrix, thus it's continuous (smooth, even!) and 
+$\mathsf{GL}_n(\R) = \text{det}^{-1} \{ x \in \R \mid x \neq 0 \}$ is an 
+open subset of $\mathcal{M}_n(\R)$.
+
+So to know that $\mathsf{GL}_n(\R)$ is a manifold, it's enough to show
+
+\begin{thm}
+  An open subset of an $n$-manifold is an $n$-manifold
+\end{thm}
+
+\begin{proof}
+  I'm feeling lazy right now.
+
+  \missingfigure{The visual from the notes showing what's happening}
+\end{proof}
+
+So $\mathsf{GL}_n(\R)$ is a manifold. Why is it a Lie group?
+
+Notice multiplication
+
+\[
+  (A,B) \mapsto (AB)_{i,j} = \sum_k A_{ik} B_{kj}
+\]
+
+and inversion
+
+\[
+  A \mapsto A^{-1}_{ij} = \frac{(-1)^{i+j} \text{minor}_{ji}}{\text{det}(A)}
+\]
+
+are both polynomial maps. In particular, they're smooth.
+
+\todo{I should probably double check that the inversion formula is exactly right.
+It's definitly \emph{something} like this\ldots}
+
+\todo{Also, we should probably put in a few more words about what minors are, etc?
+Either that, or call this an exercise, and say "consider the minors", etc as a hint?}
+
+\bigskip
+
+It will come as no surprise that we can use $\C$ instead of $\R$ above, and
+everything goes through unchanged.
+
+\begin{defn}
+  The ($n \times n$, complex) \important{General Linear Group} is
+
+  \[
+    \mathsf{GL_n}(\C) = \big \{ \text{invertible $n \times n$ matrices with entries in $\C$} \big \}.
+  \]
+
+  This is a Lie group with matrix multiplication and inversion.
+\end{defn}
+
+Again, this is a manifold because it is an open subset of the $2n^2$-dimensional
+(real) vector space $\mathcal{M}_n(\C)$ of $n \times n$ complex matrices and
+the group operations are polynomials (thus smooth).
 
 \end{document}
 

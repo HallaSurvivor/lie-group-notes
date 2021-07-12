@@ -2,3 +2,6 @@ ignore the files that get autocreated by latexmk
 *glo
 *.ist
 *.pdf
+*.aux
+*.fdb_latexmk
+*.out
