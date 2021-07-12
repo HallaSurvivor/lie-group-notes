@@ -1,4 +1,4 @@
-\documentclass[12pt]{book}
+\documentclass[10pt]{book}
 
 %{{{ Preamble
 
@@ -58,6 +58,9 @@
 
 \usepackage{exercise}
 
+\usepackage{enumitem}
+
+
 %}}}
 
 %%%%%%%%{{{ Formatting
@@ -89,6 +92,8 @@
     \ifx#1\mathop\expandafter\displaylimits\fi}
 \makeatother
 
+\setenumerate{noitemsep}
+\setlist{noitemsep}
 
 %}}}
 
@@ -297,32 +302,6 @@
 
 % one file per chapter
 \usepackage{subfiles}
-
-% get indices and glossaries working
-% shamelessly stolen from
-% https://tex.stackexchange.com/questions/145944/make-symbol-index-with-description
-\usepackage[nomain,section,sort=def]{glossaries}
-\usepackage{glossary-mcols}
-
-\setglossarystyle{mcolindex}
-\renewcommand{\glspostdescription}{\dotfill}
-
-\newglossary[LieGrps]{LieGroups}{liegrp-gls}{liegrp-glo}{Lie Groups}
-
-\makeglossaries
-
-% Define a command to define Lie Groups
-% Syntax: \newliegrp[options]{label}{lie group symbol}
-
-\newcommand*{\newliegrp}[3][]{%
-  \newglossaryentry{#2}{type=LieGroups,%
-    name={$#3$},text={#3},description={},#1}%
-}
-
-% Define lie groups
-
-\newliegrp{GLn}{\mathsf{GL}(n)}
-
 
 \theoremstyle{definition} %% Don't italicize the theorem statement
 \newtheorem{thm}{Theorem}[chapter]

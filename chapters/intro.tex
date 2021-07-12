@@ -5,7 +5,215 @@
 \chapter{Introduction}%
 \label{ch:introduction}
 
-This sure is an introduction
+\todo{Do we want to say a word about groups = symmetry and manifolds = calculus?}
+\todo{Also, do we want to motivate these objects at all?}
+
+\section{Lie Groups = Symmetry + Calculus}
+  
+\begin{defn}
+  A \important{Lie Group} is a group in the category of manifolds.
+\end{defn}
+
+\begin{defn}
+  A \important{Lie Group} is a group that is also a manifold%
+  \footnote{and the operations should be smooth with respect to this structure.}.
+\end{defn}
+
+Given a Lie Group $G$, its tangent space at the identity is called a 
+\important{Lie Algebra}, often written $\mathfrak{g}$.
+
+\missingfigure{$S^1$ with the tangent line at the origin}
+
+In this image, our group $G = \{ e^{i \theta} \mid \theta \in \R \}$,
+and its lie algebra is $\mathfrak{g} = \{ i \theta \mid \theta \in \R \}$.
+
+Lie algebras let us reduce problems about Lie groups to linear algebra.
+
+\section{The Plan}
+\todo{So this makes sense as part of a day 1 of lecture, but should we 
+put this in a preface or something instead of right here?}
+
+In this book, we'll cover
+
+\begin{enumerate}
+  \item \textbf{General Theorems} about Lie Groups and Lie Algebras \todo{Are we still planning to "skip many proofs?"}
+  \item \textbf{Examples} -- These are the key to really \emph{understanding} Lie groups.
+  \item \textbf{Applications} to 
+    \begin{itemize}
+      \item Geometry -- Felix Klein's idea \todo{cite the erlangen program, a historical account, or another book?}
+        that a geometrical figure (a point, line, etc.) is "really" an action of a Lie group on a manifold.
+      \item Quantum Physics -- The idea \todo{can we trace this to anyone like we can Klein?} a type of particle
+        is "really" an action (or \emph{representation} in this context) of a Lie group on a Hilbert Space.
+    \end{itemize}
+\end{enumerate}
+
+\section{A Review of Manifold Theory}
+
+\begin{defn}
+  An ($n$-dimensional) \important{Topological Manifold} is a topological space $M$ so that
+  each point $x \in M$ has an open neighborhood $U_x$ homeomorphic to $\R^n$.
+
+  We may also call $M$ an $n$-manifold.
+\end{defn}
+
+\todo{Add a thing in the preface that says %
+``the reader familiar with Tu's intro to manifolds will recognize the influence on this section'' %
+or something like that. I really did lift this almost verbatim.}
+
+A fixed homeomorphism $U_x \to \R^n$ is called a \important{Chart}, and
+we call two charts $\varphi : U \to \R^n$, $\psi : V \to \R^n$ 
+\important{Compatible} if the two maps 
+$\varphi \circ \psi^{-1} : \psi(U \cap V) \to \varphi(U \cap V)$ and 
+$\psi \circ \varphi^{-1} : \varphi(U \cap V) \to \psi(U \cap V)$ are 
+smooth (by which we mean $C^\infty$).
+
+These two maps are called the \important{Transition Functions} between
+the charts. 
+
+\missingfigure{A figure indicating what it means for charts to be compatible}
+
+\begin{defn}
+  An \important{Atlas} on a topological manifold $M$ is a collection of 
+  compatible charts whose domains cover $M$.
+
+  An atlas is called \important{Maximal} if any chart $\varphi : X \to \R^n$
+  not in the atlas is incompatible with some chart in the atlas.
+\end{defn}
+
+\begin{defn}
+  An ($n$-dimensional) \important{Smooth Manifold} is a topological 
+  $n$-manifold $M$ equipped with a maximal atlas. 
+
+  Unless otherwise stated, by ``manifold'' we will always mean a smooth
+  manifold. 
+\end{defn}
+
+\begin{ExerciseList}
+
+\Exercise[label={ex:automatic-compatibility-of-charts}]
+Let $\mathfrak{A}$ be an atlas on a topological manifold $M$. 
+If $(U, \varphi)$ and $(V, \psi)$ are both compatible with every
+chart in $\mathfrak{A}$, then they are compatible with each other too.
+
+\Exercise[label={ex:atlases-extend-to-maximal-atlases}]
+Every atlas $\mathfrak{A} = \{ (U_\alpha, \varphi_\alpha) \}$ on a 
+topological manifold $M$ is contained in a (unique!) maximal atlas.
+(Hint: consider all charts compatible with every chart in $\mathfrak{A}$,
+then use the previous exercise to argue that this is still an atlas)
+
+This exercise shows that we don't need to define a maximal atlas to put a 
+smooth structure on a topological manifold. In practice, we almost always 
+work with a much more manageable atlas with only finitely many charts.
+  
+\end{ExerciseList}
+
+\bigskip
+
+Where there are objects, there are arrows, and we should consider the 
+maps between manifolds as well. 
+
+\begin{defn}
+  Let $M$ and $N$ be manifolds. A function $f : M \to N$ is called 
+  \important{(Smooth) Map} if for every $x \in M$ there are charts
+  $(U_x, \varphi)$ and $(V_{f(x)}, \psi)$ so that 
+  $\psi \circ f \circ \phi^{-1}$ is smooth.
+\end{defn}
+
+\begin{ExerciseList}
+  
+\Exercise[label={ex:any-chart-works-for-smooth-map}]
+Show that if the above definition works for \emph{some} charts
+$(U_x, \varphi)$ and $(V_{f(x)}, \psi)$, it actually works for 
+every pair of charts whose domains are neighborhoods of $x$ and $f(x)$.
+(Hint: transition functions are smooth).
+
+\end{ExerciseList}
+
+\missingfigure{Indicate the definition of a smooth map with potatoes and arrows}
+
+\begin{defn}
+  The smooth manifolds and smooth maps together form the category $\mathsf{Diff}$.
+
+  An isomorphism in this category%
+  \footnote{that is, a pair of maps $f : M \to N$ and $g : N \to M$ so that 
+  $f \circ g = \id_N$ and $g \circ f = \id_M$} is called a \important{Diffeomorphism}.
+
+  We consider two diffeomorphic manifolds to be ``the same''.
+\end{defn}
+
+Let us define Lie Groups exactly one more time.
+
+\begin{defn}
+  A \important{Lie Group} is a manifold $G$ equipped with smooth maps 
+
+  \begin{itemize}
+      \item $\cdot : G \times G \to G$ 
+      \item ${}^{-1} : G \to G$ 
+  \end{itemize}
+
+  and a point $1 \in G$ so that $(G,1,\cdot, {}^{-1})$ is a group.
+\end{defn}
+
+The attentive reader will notice the sleight of hand. What does it mean
+to have a smooth map from $G \times G \to G$? We know that $G$ is a manifold
+by assumption, but why should $G \times G$ be one!? 
+
+\begin{defn}
+  Given an $m$-manifold $M$ and an $n$-manifold $N$ 
+  (with atlases $\mathfrak{A}$ and $\mathfrak{B}$, respectively), the 
+  product topological space $M \times N$ becomes an $(m+n)$-manifold by
+  considering the atlas
+
+  \[
+    \big \{ 
+      (U \times V, \varphi \times \psi) 
+    \mid 
+      (U, \varphi) \in \mathfrak{A}, (V, \psi) \in \mathfrak{B} 
+    \big \}
+  \]
+
+  (which we can extend to a maximal atlas by exercise 
+  \ref{ex:atlases-extend-to-maximal-atlases})
+
+\end{defn}
+
+\todo{Do we want to prove that this really is a manifold? Or leave it as an exercise? Or not mention it at all?}
+
+\begin{ExerciseList}
+  \Exercise[label={ex:categorical-product-of-manifolds}]
+  Prove that this construction really is a product in the categorical sense. 
+  That is, show 
+
+  \begin{enumerate}
+    \item The topological projection maps $\pi_1 : M \times N \to M$ and 
+      $\pi_2 : M \times N \to N$ are smooth
+    \item For any manifold $X$ and for any maps $f : X \to M$ and $g : X \to N$,
+      there is a unique map $f \times g : X \to M \times N$ making the following
+      diagram commute:
+  \end{enumerate}
+
+  \missingfigure{You know the one}
+\end{ExerciseList}
+
+\section{Examples of Lie Groups}
+
+\todo{You said (out loud) a lot of words about each of these examples. 
+I can try to imitate your voice, or you can write some words here. 
+Let me know what you prefer.}
+  
+\subsection{$(\R^n, +)$}
+
+More generally, any real or complex vector space $V$ becomes a Lie group 
+under vector addition.
+
+\subsection{$\mathsf{GL_n(\R)}$}
+
+\begin{defn}
+  The ($n \times n$, real) \important{General Linear Group} 
+
+  \[ \mathsf{GL}_n(\R) = \big \{ \text{invertible $n \times n$ matrices with entries in $\R$} \big \} \]
+\end{defn}
 
 
 \end{document}
+
