@@ -5,6 +5,8 @@
 \chapter{Introduction}%
 \label{ch:introduction}
 
+%% PDF 1 of Lecture Notes
+
 \todo{Do we want to say a word about groups = symmetry and manifolds = calculus?}
 \todo{Also, do we want to motivate these objects at all?}
 
@@ -303,6 +305,116 @@ We can also get new Lie groups from old.
   reference where the proof normally goes (as I did here). If we're doing this, 
   we should mention it in the preface}
 \end{proof}
+
+With this theorem in hand, we'll get a whole slew of new examples of Lie groups
+by considering the closed subgroups of $\mathsf{GL}_n$!
+
+%% PDF 2 of Lecture Notes
+
+\section{Matrix Lie Groups}
+
+\todo{In the handwriten notes, you mentioned homomorphisms here. 
+I think it flows better to move straight into matrix lie groups, 
+and mention homs and the category of lie groups after. Let me know
+if you have a reason for putting the order back how you had it}
+
+\begin{defn}
+A \important{Matrix Lie Group} is a closed subgroup of $\mathsf{GL}_n(\C)$. 
+\end{defn}
+
+\todo{This is a kind of subtle formatting thing that may not matter.
+I'm currently doing these as subsections, but they're all quite short\ldots
+Do you think it makes more sense to make this an enumerate instead?}
+
+\subsection{$\mathsf{GL_n}(\R)$}
+
+We've already met $\mathsf{GL_n}(\R)$, which certainly deserves to be called 
+a ``matrix Lie group''. Why is this formally the case, though?
+
+Well this is obviously a subgroup of $\mathsf{GL_n}(\C)$, so we just need to 
+show that it's \emph{closed}. So let's fix a sequence of matrices 
+$A_n$ converging to $A$ with each $A_n \in \mathsf{GL_n}(\R)$. We want to
+show $A$ is in $\mathsf{GL_n}(\R)$ too.
+
+But $A_n \to A$ if and only if each entry $(A_n)_{i,j} \to A_{i,j}$! 
+So we have $n^2$ many convergent real sequences, and each sequence must
+have its limit in $\mathbb{R}$. But that means each entry $A_{i,j}$ is 
+real, and so $A \in \mathsf{GL_n}(\R)$.
+
+\subsection{$\mathsf{SL_n}(\C)$}
+
+\begin{defn}
+  The \important{(Complex) Special Linear Group} is the set of $n \times n$ complex
+  matrices of determinant $1$:
+
+  \[
+    \mathsf{SL_n}(\C) = \{ A \in \mathsf{GL_n}(\C) \mid \text{det}(A) = 1 \}
+  \]
+\end{defn}
+
+\begin{ExerciseList}
+  \Exercise[label={ex:SLn-subgroup}] Prove $\mathsf{SL_n}(\C)$ is a subgroup of $\mathsf{GL_n}(\C)$
+  (Hint: $\text{det}(AB) = \text{det}(A) \text{det}(B)$)
+
+  \Exercise[label={ex:SLn-closed}] Prove $\mathsf{SL_n}(\C)$ is closed in $\mathsf{GL_n}(\C)$
+  (Hint: $\text{det}$ is a continuous function, and $\{1\}$ is closed in $\C$)
+\end{ExerciseList}
+
+\subsection{$\mathsf{SL_n}(\R)$}
+
+\begin{defn}
+  The \important{(Real) Special Linear Group} is the set of $n \times n$ real
+  matrices of determinant $1$:
+
+  \[
+    \mathsf{SL_n}(\R) = \{ A \in \mathsf{GL_n}(\R) \mid \text{det}(A) = 1 \}
+  \]
+\end{defn}
+
+Notice $\mathsf{SL_n}(\R) = \mathsf{GL_n}(\R) \cap \mathsf{SL_n}(\C)$ is the 
+intersection of closed subgroups of $\mathsf{GL_n}(\C)$, and thus is itself
+a closed subgroup\footnote{recall that separately the intersection of closed sets is closed, 
+and the intersection of subgroups is a subgroup}.
+  
+\subsection{$\mathsf{U(n)}$}
+
+\begin{defn}
+  The \important{Unitary Group} is the set of $n \times n$ unitary matrices
+
+  \[
+    \mathsf{U(n)} = \{ A \in \mathsf{GL_n}(\C) \mid A A^* = 1 \}
+  \]
+
+  where, as usual $A^*$ is the \important{Adjoint} 
+  (or \important{Conjugate Transpose}) $(A^*)_{i,j} = \overline{A_{j,i}}$.
+\end{defn}
+
+\begin{ExerciseList}
+  \Exercise[label={ex:Un-subgroup}] Prove $\mathsf{U(n)}$ is a subgroup of $\mathsf{GL_n}(\C)$.
+
+  \Exercise[label={ex:Un-closed}] Prove $A \mapsto A^*$ is continuous. Use this to 
+  conclude that $A \mapsto A A^*$ is continuous, and thus that $\mathsf{U(n)}$ is closed.
+\end{ExerciseList}
+
+\todo{This is the only matrix group that gets an extra lemma. 
+I think you gave some exposition about how important a group this is,
+and it might be worth including some exposition here as well?}
+
+\begin{lemma}
+  For any $g \in \mathsf{GL_n}(\C)$, the following are equivalent:
+
+  \begin{enumerate}
+    \item $g g^* = 1$
+    \item $g^* g = 1$
+    \item $g$ preserves inner products. That is, 
+      $\langle gv, gw \rangle = \langle v, w \rangle$
+      for every $v$ and $w$ in $\C^n$. Here we use the
+      inner product $\langle v, w \rangle = \sum \overline{v_i} w$.
+    \item $g$ preserves lengths. That is,
+      $\norm{gv} = \norm{v}$ for every $v \in \C^n$. Here
+      $\norm{v} = \sqrt{\langle v, v \rangle}$.
+  \end{enumerate}
+\end{lemma}
 
 \end{document}
 
