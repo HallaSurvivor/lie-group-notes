@@ -208,12 +208,12 @@ Let me know what you prefer.}
 More generally, any real or complex vector space $V$ becomes a Lie group 
 under vector addition.
 
-\subsection{$\mathsf{GL_n(\R)}$}
+\subsection{$\mathsf{GL}(n,\R)$}
 
 \begin{defn}
   The ($n \times n$, real) \important{General Linear Group} 
 
-  \[ \mathsf{GL}_n(\R) = \big \{ \text{invertible $n \times n$ matrices with entries in $\R$} \big \} \]
+  \[ \mathsf{GL}(n,\R) = \big \{ \text{invertible $n \times n$ matrices with entries in $\R$} \big \} \]
 
   is a Lie group with matrix multiplication as its operation.
 \end{defn}
@@ -221,16 +221,16 @@ under vector addition.
 This is clearly a group, but why is it a manifold, and why are multiplying
 and inverting matrices smooth operations?
 
-The key observation is that $\mathsf{GL}_n(\R)$ is an open subset of 
-$\mathcal{M}_n(\R)$ (the space of all matrices), which is an $n^2$-dimensional
+The key observation is that $\mathsf{GL}(n,\R)$ is an open subset of 
+$\mathcal{M}(n,\R)$ (the space of all matrices), which is an $n^2$-dimensional
 vector space (and thus a manifold).
 
-This is because $\text{det} : \mathcal{M}_n(\R) \to \R$ is a polynomial in
+This is because $\text{det} : \mathcal{M}(n,\R) \to \R$ is a polynomial in
 the entires of the matrix, thus it's continuous (smooth, even!) and 
-$\mathsf{GL}_n(\R) = \text{det}^{-1} \{ x \in \R \mid x \neq 0 \}$ is an 
-open subset of $\mathcal{M}_n(\R)$.
+$\mathsf{GL}(n,\R) = \text{det}^{-1} \{ x \in \R \mid x \neq 0 \}$ is an 
+open subset of $\mathcal{M}(n,\R)$.
 
-So to know that $\mathsf{GL}_n(\R)$ is a manifold, it's enough to show
+So to know that $\mathsf{GL}(n,\R)$ is a manifold, it's enough to show
 
 \begin{thm}
   An open subset of an $n$-manifold is an $n$-manifold
@@ -242,7 +242,7 @@ So to know that $\mathsf{GL}_n(\R)$ is a manifold, it's enough to show
   \missingfigure{The visual from the notes showing what's happening}
 \end{proof}
 
-So $\mathsf{GL}_n(\R)$ is a manifold. Why is it a Lie group?
+So $\mathsf{GL}(n,\R)$ is a manifold. Why is it a Lie group?
 
 Notice multiplication
 
@@ -273,14 +273,14 @@ everything goes through unchanged.
   The ($n \times n$, complex) \important{General Linear Group} is
 
   \[
-    \mathsf{GL_n}(\C) = \big \{ \text{invertible $n \times n$ matrices with entries in $\C$} \big \}.
+    \mathsf{GL}(n,\C) = \big \{ \text{invertible $n \times n$ matrices with entries in $\C$} \big \}.
   \]
 
   This is a Lie group with matrix multiplication and inversion.
 \end{defn}
 
 Again, this is a manifold because it is an open subset of the $2n^2$-dimensional
-(real) vector space $\mathcal{M}_n(\C)$ of $n \times n$ complex matrices and
+(real) vector space $\mathcal{M}(n,\C)$ of $n \times n$ complex matrices and
 the group operations are polynomials (thus smooth).
 
 \subsection{Closed Subgroups}
@@ -307,7 +307,7 @@ We can also get new Lie groups from old.
 \end{proof}
 
 With this theorem in hand, we'll get a whole slew of new examples of Lie groups
-by considering the closed subgroups of $\mathsf{GL}_n$!
+by considering the closed subgroups of $\mathsf{GL}(n,\C)$!
 
 %% PDF 2 of Lecture Notes
 
@@ -319,70 +319,70 @@ and mention homs and the category of lie groups after. Let me know
 if you have a reason for putting the order back how you had it}
 
 \begin{defn}
-A \important{Matrix Lie Group} is a closed subgroup of $\mathsf{GL}_n(\C)$. 
+A \important{Matrix Lie Group} is a closed subgroup of $\mathsf{GL}(n,\C)$. 
 \end{defn}
 
 \todo{This is a kind of subtle formatting thing that may not matter.
 I'm currently doing these as subsections, but they're all quite short\ldots
 Do you think it makes more sense to make this an enumerate instead?}
 
-\subsection{$\mathsf{GL_n}(\R)$}
+\subsection{$\mathsf{GL}(n,\R)$}
 
-We've already met $\mathsf{GL_n}(\R)$, which certainly deserves to be called 
+We've already met $\mathsf{GL}(n,\R)$, which certainly deserves to be called 
 a ``matrix Lie group''. Why is this formally the case, though?
 
-Well this is obviously a subgroup of $\mathsf{GL_n}(\C)$, so we just need to 
+Well this is obviously a subgroup of $\mathsf{GL}(n,\C)$, so we just need to 
 show that it's \emph{closed}. So let's fix a sequence of matrices 
-$A_n$ converging to $A$ with each $A_n \in \mathsf{GL_n}(\R)$. We want to
-show $A$ is in $\mathsf{GL_n}(\R)$ too.
+$A_n$ converging to $A$ with each $A_n \in \mathsf{GL}(n,\R)$. We want to
+show $A$ is in $\mathsf{GL}(n,\R)$ too.
 
 But $A_n \to A$ if and only if each entry $(A_n)_{i,j} \to A_{i,j}$! 
 So we have $n^2$ many convergent real sequences, and each sequence must
 have its limit in $\mathbb{R}$. But that means each entry $A_{i,j}$ is 
-real, and so $A \in \mathsf{GL_n}(\R)$.
+real, and so $A \in \mathsf{GL}(n,\R)$.
 
-\subsection{$\mathsf{SL_n}(\C)$}
+\subsection{$\mathsf{SL}(n,\C)$}
 
 \begin{defn}
   The \important{(Complex) Special Linear Group} is the set of $n \times n$ complex
   matrices of determinant $1$:
 
   \[
-    \mathsf{SL_n}(\C) = \{ A \in \mathsf{GL_n}(\C) \mid \text{det}(A) = 1 \}
+    \mathsf{SL}(n,\C) = \{ A \in \mathsf{GL}(n,\C) \mid \text{det}(A) = 1 \}
   \]
 \end{defn}
 
 \begin{ExerciseList}
-  \Exercise[label={ex:SLn-subgroup}] Prove $\mathsf{SL_n}(\C)$ is a subgroup of $\mathsf{GL_n}(\C)$
+  \Exercise[label={ex:SLn-subgroup}] Prove $\mathsf{SL}(n,\C)$ is a subgroup of $\mathsf{GL}(n,\C)$
   (Hint: $\text{det}(AB) = \text{det}(A) \text{det}(B)$)
 
-  \Exercise[label={ex:SLn-closed}] Prove $\mathsf{SL_n}(\C)$ is closed in $\mathsf{GL_n}(\C)$
+  \Exercise[label={ex:SLn-closed}] Prove $\mathsf{SL}(n,\C)$ is closed in $\mathsf{GL}(n,\C)$
   (Hint: $\text{det}$ is a continuous function, and $\{1\}$ is closed in $\C$)
 \end{ExerciseList}
 
-\subsection{$\mathsf{SL_n}(\R)$}
+\subsection{$\mathsf{SL}(n,\R)$}
 
 \begin{defn}
   The \important{(Real) Special Linear Group} is the set of $n \times n$ real
   matrices of determinant $1$:
 
   \[
-    \mathsf{SL_n}(\R) = \{ A \in \mathsf{GL_n}(\R) \mid \text{det}(A) = 1 \}
+    \mathsf{SL}(n,\R) = \{ A \in \mathsf{GL}(n,\R) \mid \text{det}(A) = 1 \}
   \]
 \end{defn}
 
-Notice $\mathsf{SL_n}(\R) = \mathsf{GL_n}(\R) \cap \mathsf{SL_n}(\C)$ is the 
-intersection of closed subgroups of $\mathsf{GL_n}(\C)$, and thus is itself
+Notice $\mathsf{SL}(n,\R) = \mathsf{GL}(n,\R) \cap \mathsf{SL}(n,\C)$ is the 
+intersection of closed subgroups of $\mathsf{GL}(n,\C)$, and thus is itself
 a closed subgroup\footnote{recall that separately the intersection of closed sets is closed, 
 and the intersection of subgroups is a subgroup}.
   
-\subsection{$\mathsf{U(n)}$}
+\subsection{$\mathsf{U}(n)$}
 
 \begin{defn}
   The \important{Unitary Group} is the set of $n \times n$ unitary matrices
 
   \[
-    \mathsf{U(n)} = \{ A \in \mathsf{GL_n}(\C) \mid A A^* = 1 \}
+    \mathsf{U}(n) = \{ A \in \mathsf{GL}(n,\C) \mid A A^* = 1 \}
   \]
 
   where, as usual $A^*$ is the \important{Adjoint} 
@@ -390,10 +390,10 @@ and the intersection of subgroups is a subgroup}.
 \end{defn}
 
 \begin{ExerciseList}
-  \Exercise[label={ex:Un-subgroup}] Prove $\mathsf{U(n)}$ is a subgroup of $\mathsf{GL_n}(\C)$.
+  \Exercise[label={ex:Un-subgroup}] Prove $\mathsf{U}(n)$ is a subgroup of $\mathsf{GL}(n,\C)$.
 
   \Exercise[label={ex:Un-closed}] Prove $A \mapsto A^*$ is continuous. Use this to 
-  conclude that $A \mapsto A A^*$ is continuous, and thus that $\mathsf{U(n)}$ is closed.
+  conclude that $A \mapsto A A^*$ is continuous, and thus that $\mathsf{U}(n)$ is closed.
 \end{ExerciseList}
 
 \todo{This is the only matrix group that gets an extra lemma. 
@@ -401,7 +401,7 @@ I think you gave some exposition about how important a group this is,
 and it might be worth including some exposition here as well?}
 
 \begin{lemma}
-  For any $g \in \mathsf{GL_n}(\C)$, the following are equivalent:
+  For any $g \in \mathsf{GL}(n,\C)$, the following are equivalent:
 
   \begin{enumerate}
     \item $g g^* = 1$
@@ -434,22 +434,22 @@ and it might be worth including some exposition here as well?}
   the inner product.
 \end{proof}
 
-This lets us give a more conceptual justification why $\mathsf{U(n)}$ is a
-subgroup of $\mathsf{GL_n}(\C)$. In general, if you have a group that acts
+This lets us give a more conceptual justification why $\mathsf{U}(n)$ is a
+subgroup of $\mathsf{GL}(n,\C)$. In general, if you have a group that acts
 on a structure, then anytime you look at those group elements which preserve
 $\sim$ bonus structure $\sim$, you'll actually be looking at a subgroup.
 
-In this case, $\mathsf{GL_n}(\C)$ acts on $\C^n$ (by matrix-vector multiplication),
-and $\mathsf{U(n)}$ are exactly those elements preserving the 
+In this case, $\mathsf{GL}(n,\C)$ acts on $\C^n$ (by matrix-vector multiplication),
+and $\mathsf{U}(n)$ are exactly those elements preserving the 
 $\sim$ bonus structure $\sim$ called ``length''.
 
-\subsection{$\mathsf{O(n)}$}
+\subsection{$\mathsf{O}(n)$}
 
 \begin{defn}
   The \important{Orthogonal Group} is the set of $n \times n$ orthogonal matrices
 
   \[ 
-    \mathsf{O(n)} = \{ A \in \mathsf{GL_n}(\R) \mid AA^* = 1 \}
+    \mathsf{O}(n) = \{ A \in \mathsf{GL}(n,\R) \mid AA^* = 1 \}
   \]
 
   Note since $A$ is real, we have $A^* = A^T$.
@@ -458,25 +458,25 @@ $\sim$ bonus structure $\sim$ called ``length''.
 This is a closed subgroup since it is the intersection of two closed subgroups
 (do you see which ones?)
 
-\subsection{$\mathsf{SU(n)}$}
+\subsection{$\mathsf{SU}(n)$}
 
 \begin{defn}
   The \important{Special Unitary Group} is the set of $n \times n$ matrices
 
   \[
-    \mathsf{SU(n)} = \{ A \in \mathsf{GL_n}(\C) \mid A A^* = 1 \text{ and } \text{det}(A) = 1 \}
+    \mathsf{SU}(n) = \{ A \in \mathsf{GL}(n,\C) \mid A A^* = 1 \text{ and } \text{det}(A) = 1 \}
   \]
 \end{defn}
 
 This is a closed subgroup since it is the intersection of two closed subgroups
 (do you see which ones?)
 
-\subsection{$\mathsf{SO(n)}$}
+\subsection{$\mathsf{SO}(n)$}
 
 \begin{defn}
   The \important{Special Orthogonal Group} is the set of $n \times n$ matrices
   \[
-    \mathsf{SO(n)} = \{ A \in \mathsf{GL_n}(\R) \mid A A^* = 1 \text{ and } \text{det}(A) = 1 \}
+    \mathsf{SO}(n) = \{ A \in \mathsf{GL}(n,\R) \mid A A^* = 1 \text{ and } \text{det}(A) = 1 \}
   \]
 \end{defn}
 
@@ -494,6 +494,85 @@ showing a big commutative diagram of inclusions on the next page that gives the
 answer away.}
 
 \section{Lie Group Homomorphisms}
+
+Since Lie groups have the structure of both a group and a manifold, 
+we want our homomorphisms to preserve both of these structures. With that
+in mind, we define
+
+\begin{defn}
+  A \important{Lie Group Homomorphism} $f$ between Lie groups $G$ and $H$ 
+  is a group homomorphism which is also a smooth map.
+
+  Unsurprisingly, Lie Groups and their homomorphisms assemble into a category
+  $\mathsf{LieGrp}$.
+\end{defn}
+
+One important example of a Lie group homomorphism is the inclusion of a 
+closed subgroup $H \subseteq G$ into $G$. \todo{Say a word about why this is smooth?}
+
+In particular, if $H$ is a matrix Lie group, then for some $n$ 
+we have a $1$-to-$1$ Lie group homomorphism 
+$\iota : H \hookrightarrow \mathsf{GL}(n,\C)$.
+
+In fact, we can put together all of the groups we've seen so far into one 
+diagram that shows the relations between them:
+
+\[\begin{tikzcd}
+	& {\mathsf{GL}(n,\mathbb{R})} &&& {GL(n,\mathbb{C})} \\
+	&& {\mathsf{O}(n)} &&& {\mathsf{U}(n)} \\
+	{\mathsf{SL}(n,\mathbb{R})} &&& {\mathsf{SL}(n,\mathbb{C})} \\
+	& {\mathsf{SO}(n)} &&& {\mathsf{SU}(n)}
+	\arrow[hook, from=4-2, to=3-1]
+	\arrow[hook, from=3-1, to=1-2]
+	\arrow[hook, from=4-2, to=2-3]
+	\arrow[hook, from=2-3, to=1-2]
+	\arrow[hook, from=4-5, to=2-6]
+	\arrow[hook, from=4-5, to=3-4]
+	\arrow[hook, from=3-4, to=1-5]
+	\arrow[hook, from=2-6, to=1-5]
+	\arrow[hook, from=1-2, to=1-5]
+	\arrow[hook, from=3-1, to=3-4]
+	\arrow[hook, from=4-2, to=4-5]
+	\arrow[hook, from=2-3, to=2-6]
+\end{tikzcd}\]
+
+\section{Concrete Examples: Low Dimensions}
+
+Let's look at the above diagram in the case $n = 1$
+
+\todo{Should we say something more about each of these?}
+
+\begin{itemize}
+    \item $\mathsf{GL}(1,\C) \cong \C^\times                   \cong (\C \setminus \{ 0 \}, \cdot)$
+    \item $\mathsf{GL}(1,\R) \cong \R^\times                   \cong (\R \setminus \{ 0 \}, \cdot)$
+    \item $\mathsf{U}(1)     \cong \{ z \in \C \mid |z| = 1 \} \cong S^1$ is the \important{Circle Group}
+    \item $\mathsf{O}(1)     \cong \{ x \in \R \mid |x| = 1 \} \cong \mathbb{Z} / 2 \cong S^0$
+\end{itemize}
+
+\todo{In the notes these are all the examples given, because things trivialize a little in this dimension.
+Do we want to say something about that? And maybe give examples in dimension $2$ as well?}
+
+\todo{This note also kind of comes out of nowhere. We should maybe say something to make it feel a bit more
+cohesive with the surrounding text.}
+
+Note:
+
+\begin{align*}
+  \mathsf{GL}(1,\C) 
+  &\cong \mathbb{C}^\times \\
+  &\cong \{ r e^{i \theta} \mid r, \theta \in \R \} \\
+  &\cong \mathbb{R} \times S^1
+\end{align*}
+
+\begin{align*}
+  \mathsf{GL}(1,\R)
+  &\cong \mathbb{R}^\times \\
+  &\cong \{ e^{r} \eps \mid r \in \R, \eps = \pm 1 \} \\
+  &\cong \mathbb{R} \times S^0
+\end{align*}
+
+\missingfigure{$\mathsf{GL}(1,\C)$ as a punctured disk vs as a cylinder. $\mathsf{GL}(1,\R)$ is highlighted inside it.}
+
 
 
 \end{document}

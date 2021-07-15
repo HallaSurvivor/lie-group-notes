@@ -276,7 +276,7 @@
 
 %}}}
 
-%% Stuff special to the book
+%% Stuff special to the book {{{
 
 % one file per chapter
 \usepackage{subfiles}
@@ -311,6 +311,19 @@
 %% make exercises start with a newline
 \renewcommand{\ExerciseHeader}{\textbf{\ExerciseName~\ExerciseHeaderNB} (\ExerciseTitle)\smallskip\newline}
 \renewcommand{\AtBeginExercise}{\hspace{-0.66em}}
+
+%}}}
+
+% Lie Groups, Algebras, etc
+
+\newcommand*{\GLnC}{\mathsf{GL}(n,\C)}
+\newcommand*{\GLnR}{\mathsf{GL}(n,\R)}
+\newcommand*{\SLnC}{\mathsf{SL}(n,\C)}
+\newcommand*{\SLnR}{\mathsf{SL}(n,\R)}
+\newcommand*{\Un}{\mathsf{U}(n)}
+\newcommand*{\On}{\mathsf{O}(n)}
+\newcommand*{\SUn}{\mathsf{SU}(n)}
+\newcommand*{\SOn}{\mathsf{SO}(n)}
 
 %}}}
 
