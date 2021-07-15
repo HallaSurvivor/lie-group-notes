@@ -416,5 +416,85 @@ and it might be worth including some exposition here as well?}
   \end{enumerate}
 \end{lemma}
 
+\begin{proof}
+  $1 \iff 2$ is easy, since any left inverse is a right inverse and vice versa.
+
+  $2 \iff 3$ follows from $\langle gv, gw \rangle = \langle v, g^* g w \rangle$
+
+  $3 \implies 4$ is clear, since $\norm{\cdot}$ is defined in terms of $\langle \cdot, \cdot \rangle$.
+
+  $4 \implies 3$ requires a little trick called ``polarization'' which is good to have
+  in your back pocket. We can actually recover $\langle \cdot, \cdot \rangle$ 
+  from the norm with the following formula:
+
+  \[ \langle v, w \rangle = \frac{1}{4} \left ( \norm{v+w}^2 - \norm{v-w}^2 \right ) \]
+
+  Since we can define $\langle \cdot , \cdot \rangle$ from $\norm{\cdot}$
+  and we know $g$ preserves $\norm{\cdot}$, we see $g$ must \emph{also} preserve
+  the inner product.
+\end{proof}
+
+This lets us give a more conceptual justification why $\mathsf{U(n)}$ is a
+subgroup of $\mathsf{GL_n}(\C)$. In general, if you have a group that acts
+on a structure, then anytime you look at those group elements which preserve
+$\sim$ bonus structure $\sim$, you'll actually be looking at a subgroup.
+
+In this case, $\mathsf{GL_n}(\C)$ acts on $\C^n$ (by matrix-vector multiplication),
+and $\mathsf{U(n)}$ are exactly those elements preserving the 
+$\sim$ bonus structure $\sim$ called ``length''.
+
+\subsection{$\mathsf{O(n)}$}
+
+\begin{defn}
+  The \important{Orthogonal Group} is the set of $n \times n$ orthogonal matrices
+
+  \[ 
+    \mathsf{O(n)} = \{ A \in \mathsf{GL_n}(\R) \mid AA^* = 1 \}
+  \]
+
+  Note since $A$ is real, we have $A^* = A^T$.
+\end{defn}
+
+This is a closed subgroup since it is the intersection of two closed subgroups
+(do you see which ones?)
+
+\subsection{$\mathsf{SU(n)}$}
+
+\begin{defn}
+  The \important{Special Unitary Group} is the set of $n \times n$ matrices
+
+  \[
+    \mathsf{SU(n)} = \{ A \in \mathsf{GL_n}(\C) \mid A A^* = 1 \text{ and } \text{det}(A) = 1 \}
+  \]
+\end{defn}
+
+This is a closed subgroup since it is the intersection of two closed subgroups
+(do you see which ones?)
+
+\subsection{$\mathsf{SO(n)}$}
+
+\begin{defn}
+  The \important{Special Orthogonal Group} is the set of $n \times n$ matrices
+  \[
+    \mathsf{SO(n)} = \{ A \in \mathsf{GL_n}(\R) \mid A A^* = 1 \text{ and } \text{det}(A) = 1 \}
+  \]
+\end{defn}
+
+This is a closed subgroup since it is the intersection of two closed subgroups
+(do you see which ones?)
+
+\todo{You say in the notes that $SO(3)$ is the group of rotations in $\R^3$. 
+Should we say more about that?}
+
+\todo{Do we want to make these last $3$ a bit more distinct? Or otherwise add
+some exposition for each? I made the presentation as an intersection implicit
+exercises in each case to try and make the reader pay marginally more attention
+amid the veritable deluge of definitions. Especially since we're going to be 
+showing a big commutative diagram of inclusions on the next page that gives the
+answer away.}
+
+\section{Lie Group Homomorphisms}
+
+
 \end{document}
 
