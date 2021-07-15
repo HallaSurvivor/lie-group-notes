@@ -100,28 +100,6 @@
 %%%%%%%%{{{ Environments
 %%%%%%%%%%%%%%%%%%%%%%%%
 
-% shamelessly stolen from 
-% https://tex.stackexchange.com/
-% questions/291346/marking-the-end-of-a-definition
-
-\theoremstyle{definition}
-\newtheorem{defn/}{Definition}
-\newtheorem*{defn*/}{Definition}
-
-\newcommand{\defnendsymbol}%
-{%
-  \mathbin{\rotatebox[origin=c]{-45}{$\parallel$}}%
-}
-
-\newenvironment{defn}
-  {\renewcommand{\qedsymbol}{$\defnendsymbol$}%
-   \pushQED{\qed}\begin{defn/}}
-  {\popQED\end{defn/}}
-
-\newenvironment{defn*}
-  {\renewcommand{\qedsymbol}{$\defnendsymbol$}%
-   \pushQED{\qed}\begin{defn*/}}
-  {\popQED\end{defn*/}}
 
 %}}}
 
@@ -307,6 +285,22 @@
 \newtheorem{thm}{Theorem}[chapter]
 \newtheorem{cor}[thm]{Corollary}
 \newtheorem{lemma}[thm]{Lemma}
+
+% shamelessly stolen from 
+% https://tex.stackexchange.com/
+% questions/291346/marking-the-end-of-a-definition
+
+\newtheorem{defn/}[thm]{Definition}
+
+\newcommand{\defnendsymbol}%
+{%
+  \mathbin{\rotatebox[origin=c]{-45}{$\parallel$}}%
+}
+
+\newenvironment{defn}
+  {\renewcommand{\qedsymbol}{$\defnendsymbol$}%
+   \pushQED{\qed}\begin{defn/}}
+  {\popQED\end{defn/}}
 
 \numberwithin{Exercise}{chapter} %% Reset to Exercise 1 at each chapter
 
