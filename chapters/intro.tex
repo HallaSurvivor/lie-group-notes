@@ -550,7 +550,7 @@ Let's look at the above diagram in the case $n = 1$
 \end{itemize}
 
 \todo{In the notes these are all the examples given, because things trivialize a little in this dimension.
-Do we want to say something about that? And maybe give examples in dimension $2$ as well?}
+Do we want to say something about that? There's examples in dimension $2$ coming up, so maybe we don't need to?}
 
 \todo{This note also kind of comes out of nowhere. We should maybe say something to make it feel a bit more
 cohesive with the surrounding text.}
@@ -572,6 +572,314 @@ Note:
 \end{align*}
 
 \missingfigure{$\mathsf{GL}(1,\C)$ as a punctured disk vs as a cylinder. $\mathsf{GL}(1,\R)$ is highlighted inside it.}
+
+%% PDF 3 of lecture notes
+
+Now let's look in dimension $2$!
+
+$\mathsf{GL}(2,\R)$ are the linear transformations of the plane. For instance,
+these are all transformations in $\mathsf{GL}(2,\R)$.
+
+\todo{figure out how to center these nicely and add a $\mapsto$ in between these}
+
+\begin{align*}
+  (1) && 
+\begin{pmatrix}
+  0 & -1 \\ 1 & 0
+\end{pmatrix}
+  &&&
+\begin{tikzpicture}[scale=0.5]
+  \draw[thin,gray!40] (-2,-2) grid (2,2);
+  \draw[<->] (-2,0)--(2,0);
+  \draw[<->] (0,-2)--(0,2);
+  \draw[line width=2pt,blue,-stealth](0,0)--(1,0);
+  \draw[line width=2pt,red,-stealth](0,0)--(0,1);
+\end{tikzpicture}
+  &&&
+\begin{tikzpicture}[scale=0.5]
+  \draw[thin,gray!40] (-2,-2) grid (2,2);
+  \draw[<->] (-2,0)--(2,0);
+  \draw[<->] (0,-2)--(0,2);
+  \draw[line width=2pt,blue,-stealth](0,0)--(0,1);
+  \draw[line width=2pt,red,-stealth](0,0)--(-1,0);
+\end{tikzpicture} \\
+  (2) && 
+\begin{pmatrix}
+  0 & 1 \\ 1 & 0
+\end{pmatrix}
+  &&&
+\begin{tikzpicture}[scale=0.5]
+  \draw[thin,gray!40] (-2,-2) grid (2,2);
+  \draw[<->] (-2,0)--(2,0);
+  \draw[<->] (0,-2)--(0,2);
+  \draw[line width=2pt,blue,-stealth](0,0)--(1,0);
+  \draw[line width=2pt,red,-stealth](0,0)--(0,1);
+\end{tikzpicture}
+  &&&
+\begin{tikzpicture}[scale=0.5]
+  \draw[thin,gray!40] (-2,-2) grid (2,2);
+  \draw[<->] (-2,0)--(2,0);
+  \draw[<->] (0,-2)--(0,2);
+  \draw[line width=2pt,blue,-stealth](0,0)--(0,1);
+  \draw[line width=2pt,red,-stealth](0,0)--(1,0);
+\end{tikzpicture} \\
+  (3) && 
+\begin{pmatrix}
+  1 & 1 \\ 0 & 1
+\end{pmatrix}
+  &&&
+\begin{tikzpicture}[scale=0.5]
+  \draw[thin,gray!40] (-2,-2) grid (2,2);
+  \draw[<->] (-2,0)--(2,0);
+  \draw[<->] (0,-2)--(0,2);
+  \draw[line width=2pt,blue,-stealth](0,0)--(1,0);
+  \draw[line width=2pt,red,-stealth](0,0)--(0,1);
+\end{tikzpicture}
+  &&&
+\begin{tikzpicture}[scale=0.5]
+  \draw[thin,gray!40] (-2,-2) grid (2,2);
+  \draw[<->] (-2,0)--(2,0);
+  \draw[<->] (0,-2)--(0,2);
+  \draw[line width=2pt,blue,-stealth](0,0)--(1,1);
+  \draw[line width=2pt,red,-stealth](0,0)--(0,1);
+\end{tikzpicture} \\
+  (4) &&
+\begin{pmatrix}
+  2 & 0 \\ 0 & 1
+\end{pmatrix}
+  &&&
+\begin{tikzpicture}[scale=0.5]
+  \draw[thin,gray!40] (-2,-2) grid (2,2);
+  \draw[<->] (-2,0)--(2,0);
+  \draw[<->] (0,-2)--(0,2);
+  \draw[line width=2pt,blue,-stealth](0,0)--(1,0);
+  \draw[line width=2pt,red,-stealth](0,0)--(0,1);
+\end{tikzpicture}
+  &&&
+\begin{tikzpicture}[scale=0.5]
+  \draw[thin,gray!40] (-2,-2) grid (2,2);
+  \draw[<->] (-2,0)--(2,0);
+  \draw[<->] (0,-2)--(0,2);
+  \draw[line width=2pt,blue,-stealth](0,0)--(2,0);
+  \draw[line width=2pt,red,-stealth](0,0)--(0,1);
+\end{tikzpicture} 
+\end{align*}
+
+Now $\mathsf{O}(2)$ is the set of all linear transformations
+that preserve inner products (thus angles and lengths), and
+$\mathsf{SL}(2,\R)$ are those transformations preserving oriented areas.
+
+So examples $1$ and $2$ are in $\mathsf{O}(2)$, and examples $1$ and $3$ are 
+in $\mathsf{SL}(2,\R)$ (do you see why?). Notice that even though areas are 
+preserved in example $2$, the \emph{orientation} of the area changes. That is,
+before the transformation is applied, moving from the blue to the red vector
+is a clockwise motion, while after the transformation, moving from blue to red
+is a counterclockwise motion.
+
+\missingfigure{The same pictures as in $(2)$, but with big curvey arrows from blue to red}
+
+Lastly $\mathsf{SO}(2) = \mathsf{O}(2) \cap \mathsf{SL}(2,\R)$ consists of exactly
+the rotations. That is,
+
+\[ 
+  \mathsf{SO}(2) = 
+  \left \{ 
+    \begin{pmatrix} 
+      \cos \theta & - \sin \theta \\ \sin \theta & \cos \theta 
+    \end{pmatrix}
+  \mid
+    \theta \in \R
+  \right \}
+\]
+
+\begin{ExerciseList}
+  \Exercise like\ldots $5$ or $6$ matrices, and ask which is in each major Lie group
+
+  \Exercise like\ldots $5$ or $6$ pictures of $2D$ transformations like earlier,
+  ask which is in each major Lie group.
+\end{ExerciseList}
+
+\subsection{Visualizing Low Dimensional Lie Groups}
+
+So, as Lie groups, 
+
+\todo{idk why this is aligning so uglily\ldots}
+\begin{align*}
+  \mathsf{SO}(2) &\cong S^1           &= \R \big / 2\pi \Z  \\
+                 &\cong \mathsf{U}(1) &= \{ z \in \C \mid |z| = 1 \}
+\end{align*}
+
+and $\mathsf{SO}(2)$ is exactly a circle.
+
+What about $\mathsf{O}(2)$?
+
+\begin{lemma}
+  If $g \in \Un$, then $\abs{\text{det}(g)} = 1$.
+\end{lemma}
+
+\begin{proof}
+  We know that 
+  \[ 
+    \text{det}(g g^*) 
+    = \text{det}(g) \text{det}(g^*) 
+    = \text{det}(g) \overline{\text{det}(g)}.
+  \]
+
+  so if $gg^* = 1$ we see $\abs{\text{det}(g)}^2 = 1$.
+\end{proof}
+
+\begin{cor}
+  If $g \in \On$, then $\text{det}(g) = \pm 1$.
+\end{cor}
+
+So for $g \in \On$, either $g \in \SOn$ or $rg \in \SOn$ where
+$r = \begin{pmatrix} -1  & 0 & \cdots & 0 \\ 0 & 1 & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & 1 \end{pmatrix}$
+is a reflection. 
+
+So as a \emph{manifold}, $\On \cong \SOn \sqcup \SOn$. In particular,
+$\mathsf{O}(2)$ looks like two disjoint circles.
+
+\todo{screw around with mdframed settings and make this look prettier.}
+
+\begin{mdframed}
+  Question: Do we have $\mathsf{O}(2) \cong \Z / 2 \times \mathsf{SO}(2)$ as Lie groups?
+
+  What about $\mathsf{O}(3) \cong \Z / 2 \times \mathsf{SO}(3)$?
+\end{mdframed}
+
+\todo{In the notes we made a big deal out of these questions. We should
+mention them as motivating problems if we're planning to come back to it,
+and talk about what tools we need to develop to answer them}
+
+To better understand $\mathsf{SL}(2, \R)$, we cleverly write our matrix as
+
+\[
+  g = \begin{pmatrix} x+z & w-y \\ w+y & x-z \end{pmatrix}
+\]
+
+with $w,x,y,z \in \R$.
+
+Then $\text{det}(g) = x^2 + y^2 - z^2 - w^2$, and as a manifold
+
+\[
+  \mathsf{SL}(2,\R) \cong \{ (x,y,z,w) \in \R^4 \mid x^2 + y^2 = z^2 + w^2 + 1 \}.
+\]
+
+The slice $w=0$ is a hyperboloid with one sheet:
+
+\missingfigure{a hyperboloid with one sheet}
+
+This is diffeomorphic to $\R \times S^1$.
+
+So $\mathsf{SL}(2,\R)$ is diffeomorphic to $\R^2 \times S^1$, since for each
+choice of $(z,w) \in \R^2$ we get a circle $x^2 + y^2 = z^2 + w^2 + 1$. 
+
+In fact, the circle $z=w=0$ is exactly $\mathsf{SO}(2) \subseteq \mathsf{SL}(2, \R)$!
+
+\[
+\left \{
+  \begin{pmatrix}
+    x+z & w-y \\ w+y & x-z
+  \end{pmatrix}
+\middle |
+  \begin{aligned}
+    x^2 + y^2 &= z^2 + w^2 + 1 \\ z&=w=0
+  \end{aligned}
+\right \}
+=
+\left \{ 
+  \begin{pmatrix}
+    x & -y \\ y & x
+  \end{pmatrix}
+\middle |
+  x^2 + y^2 = 1
+\right \}
+=
+\left \{ 
+  \begin{pmatrix}
+    \cos \theta & - \sin \theta \\ \sin \theta & \cos \theta
+  \end{pmatrix}
+\middle |
+  \theta \in \R
+\right \}
+\]
+
+So we can picture a slice of $\mathsf{SL}(2, \R)$ like this
+
+\missingfigure{A hyperboloid with a section corresponding to $\mathsf{SO}(2)$}
+
+\warning -- $\mathsf{SL}(2, \R)$ is diffeomorphic to $\mathsf{SO}(2) \times \R^2$,
+but they are \emph{not} isomorphic as Lie groups! Indeed $\mathsf{SL}(2, \R)$ is
+nonabelian, while $\mathsf{SO}(2) \times \R^2$ \emph{is} abelian! (do you see why?)
+
+There is actually a deep theorem hiding inside this observation:
+
+\begin{thm}
+  ANy connected Lie group $G$ is diffeomorphic to $K \times \R^n$ where
+  $K \subseteq G$ is a \important{Maximal Compact Subgroup} of $G$. That is,
+  a compact subgroup not contained in a bigger compact subgroup.
+
+  All maximal compact subgroups are conjugate, thus isomorphic as Lie groups.
+\end{thm}
+
+As another example of this theorem, recall $\mathsf{GL}(1,\C) \cong \mathsf{U}(1) \times \R$:
+
+\missingfigure{A cylinder, with a section corresponding to $\mathsf{U}(1)$}
+
+In fact:
+
+\begin{thm}
+  \begin{itemize}
+    \item $\Un$ is a maximal compact subgroup of $\GLnC$   
+    \item $\SUn$ is a maximal compact subgroup of $\SLnC$
+    \item $\On$ is a maximal compact subgroup of $\GLnR$
+    \item $\SOn$ is a maximal compact subgroup of $\SLnR$
+  \end{itemize}
+\end{thm}
+
+If we color the compact Lie groups in red, as well as the inclusions
+of maximal compact subgroups into larger Lie groups, we can summarize this
+information as follows:
+
+\[\begin{tikzcd}
+	& {\mathsf{GL}(n,\mathbb{R})} &&& {GL(n,\mathbb{C})} \\
+  && {\color{red}{\mathsf{O}(n)}} &&& {\color{red}{\mathsf{U}(n)}} \\
+	{\mathsf{SL}(n,\mathbb{R})} &&& {\mathsf{SL}(n,\mathbb{C})} \\
+  & {\color{red}{\mathsf{SO}(n)}} &&& {\color{red}{\mathsf{SU}(n)}}
+	\arrow[hook, from=4-2, to=3-1, color=red]
+	\arrow[hook, from=3-1, to=1-2]
+	\arrow[hook, from=4-2, to=2-3]
+	\arrow[hook, from=2-3, to=1-2, color=red]
+	\arrow[hook, from=4-5, to=2-6]
+	\arrow[hook, from=4-5, to=3-4, color=red]
+	\arrow[hook, from=3-4, to=1-5]
+	\arrow[hook, from=2-6, to=1-5, color=red]
+	\arrow[hook, from=1-2, to=1-5]
+	\arrow[hook, from=3-1, to=3-4]
+	\arrow[hook, from=4-2, to=4-5]
+	\arrow[hook, from=2-3, to=2-6]
+\end{tikzcd}\]
+
+\todo{This next bit feels somewhat jarring coming from what we've been
+talking about. Maybe we can say a bit more to ease into it?}
+
+In fact, \emph{any} inner product $(\cdot, \cdot)$ on $\C^n$ picks out a 
+maximal compact subgroup of $\GLnC$, namely 
+$K = \{ g \in \GLnC \mid (gv,gw) = (v,w) \}$.
+Of course, these are all isomorphic to $U(n)$ (as the theorem above claims).
+
+Similarly, any inner product on $\R^n$ picks out a maximal compact subgroup of
+$\GLnR$.
+
+\section{Quaternions and Visualizing $\mathsf{SU}(2)$}
+
+\todo{This is obviously long enough to warrent its own section, 
+particularly since we're introducing quaternions here. But it seems a
+bit strange to go back to visualizing after we took a digression into
+maximal compact subgroups\ldots Maybe we say a word \emph{before} the digression
+about how we'll talk about $\mathsf{SU}(2)$ soon, which justifies our coming 
+back to it now?}
+
 
 
 
