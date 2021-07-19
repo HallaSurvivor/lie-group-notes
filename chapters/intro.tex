@@ -518,7 +518,7 @@ In fact, we can put together all of the groups we've seen so far into one
 diagram that shows the relations between them:
 
 \[\begin{tikzcd}
-	& {\mathsf{GL}(n,\mathbb{R})} &&& {GL(n,\mathbb{C})} \\
+  & {\mathsf{GL}(n,\mathbb{R})} &&& {\mathsf{GL}(n,\mathbb{C})} \\
 	&& {\mathsf{O}(n)} &&& {\mathsf{U}(n)} \\
 	{\mathsf{SL}(n,\mathbb{R})} &&& {\mathsf{SL}(n,\mathbb{C})} \\
 	& {\mathsf{SO}(n)} &&& {\mathsf{SU}(n)}
@@ -842,7 +842,7 @@ of maximal compact subgroups into larger Lie groups, we can summarize this
 information as follows:
 
 \[\begin{tikzcd}
-	& {\mathsf{GL}(n,\mathbb{R})} &&& {GL(n,\mathbb{C})} \\
+  & {\mathsf{GL}(n,\mathbb{R})} &&& {\mathsf{GL}(n,\mathbb{C})} \\
   && {\color{red}{\mathsf{O}(n)}} &&& {\color{red}{\mathsf{U}(n)}} \\
 	{\mathsf{SL}(n,\mathbb{R})} &&& {\mathsf{SL}(n,\mathbb{C})} \\
   & {\color{red}{\mathsf{SO}(n)}} &&& {\color{red}{\mathsf{SU}(n)}}
@@ -882,7 +882,232 @@ maximal compact subgroups\ldots Maybe we say a word \emph{before} the digression
 about how we'll talk about $\mathsf{SU}(2)$ soon, which justifies our coming 
 back to it now?}
 
+What about $\mathsf{SU}(2)$? How can we visualize \emph{it}? It turns out
+$\mathsf{SU}(2)$ is a $3$-sphere!
 
+To understand this, it's best to think about the \important{Quaternions}, 
+a $4$ dimensional algebra denoted $\mathbb{H}$ after their discoverer, Hamilton.
+
+In fact, there are only $3$ spheres which can be given Lie group structure:
+
+\begin{itemize}
+  \item $S^0 \cong \{ x \in \R \mid \abs{x} = 1 \}$
+  \item $S^1 \cong \{ x \in \C \mid \abs{x} = 1 \}$
+  \item $S^3 \cong \{ x \in \mathbb{H} \mid \abs{x} = 1 \}$
+\end{itemize}
+
+\todo{Should we define algebra?}
+These come from the $3$ associative \important{Normed Division Algebras}:
+finite dimensional associative algebras over $\R$ equipped with a norm $\abs{\cdot}$
+with $\abs{ab} = \abs{a} \abs{b}$.
+
+There are only $3$ of these: $\R$, $\C$, and $\mathbb{H}$. Be careful, though! 
+$\R$ and $\C$ are both fields, but $\mathbb{H}$ is noncommutative!
+
+But what \emph{is} $\mathbb{H}$?
+
+Every element of $\mathbb{H}$ looks like 
+
+\[
+  \underbrace{a_0 1}_{\text{scalar part}} + \underbrace{a_1 i + a_2 j + a_3 k}_{\text{vector part}}
+\] 
+
+which we often write as $a_0 + \overrightarrow{a}$. 
+
+We add them coordinatewise, and multiply them according to the rules:
+
+\begin{itemize}
+  \item $1 x = x = x 1$
+  \item $i^2 = j^2 = k^2 = -1$
+  \item $ij = k = - ji$
+  \item $jk = i = - kj$
+  \item $ki = j = - ik$
+\end{itemize}
+
+which we extend by linearity to the whole space. 
+
+So, for example:
+
+\[ ab = (a + \overrightarrow{a})(b + \overrightarrow{b}) 
+      = a_0b_0 - \overrightarrow{a} \cdot \overrightarrow{b} + a_0 \overrightarrow{b} b_0 \overrightarrow{a} + \overrightarrow{a} \times \overrightarrow{b}.
+\]
+
+We define quaternion conjugation analogously to complex conjugation, where if
+$a = a_0 + \overrightarrow{a}$, then we define $\overline{a} = a_0 - \overrightarrow{a}$.
+
+Note $a \overline{a} = a_0^2 + a_1^2 + a_2^2 + a_3^2 = \overline{a} a$, so we
+can define a norm on $\mathbb{H}$ by $\abs{a} = \sqrt{a \overline{a}}$.
+
+\begin{ExerciseList}
+  \Exercise For all $a,b \in \mathbb{H}$, show $\abs{ab} = \abs{a} \abs{b}$. 
+  You'll use lots of identities, especially 
+  $\norm{\overrightarrow{a}}^2 \norm{\overrightarrow{b}}^2 = \abs{\overrightarrow{a} \cdot \overrightarrow{b}}^2 + \norm{\overrightarrow{a} \times \overrightarrow{b}}^2$.
+  \Exercise Show Quaternion multiplication is associative.
+  \Exercise $S^3 = \{ a \in \mathbb{H} \mid \abs{a} = 1 \}$ is a group under multiplication. 
+  (Hint: use the previous two exercises, and notice in $S^3$ we have $\overline{a} = a^{-1}$.)
+\end{ExerciseList}
+
+\missingfigure{The 2d picture of $\mathbb{H}$ and a unit sphere. Page 5 of pdf 4. 
+Is there a better place to put this? Should we motivate the image at all? }
+
+\begin{thm}
+  As Lie groups, $\mathsf{SU}(2)$ is isomorphic to $\{a \in \mathbb{H} \mid \abs{a} = 1 \}$.
+  In particular, $\mathsf{SU}(2)$ is diffeomorphic to $S^3$.
+\end{thm}
+
+\begin{proof}
+  To see this, we construct a $1$-to-$1$ algebra homomorphism 
+  $\varphi : \mathbb{H} \to M_2(\C)$. We'll then show that 
+  $\phi : \{ a \in \mathbb{H} \mid \abs{a} = 1 \} \overset{\sim}{\longrightarrow} \mathsf{SU}(2)$.
+
+  The key? Let 
+  \todo{we should double check these are correct}
+
+  \todo{Why are these aligned badly?}
+  \begin{align*}
+    I = \begin{pmatrix} 0 & -i \\ -i & 0 \end{pmatrix} &
+    J = \begin{pmatrix} 0 & -1 \\  1 & 0 \end{pmatrix} &
+    K = \begin{pmatrix} -i & 0 \\  0 & i \end{pmatrix}
+  \end{align*}
+
+  and check that 
+
+  \begin{itemize}
+      \item $I^2 = J^2 = K^2 = -1$
+      \item $IJ = K = - JI$
+      \item $JK = I = - KJ$
+      \item $KI = J = - IK$
+  \end{itemize}
+
+  Then the (injective) function 
+
+  \[ \varphi(a_0 + a_1 i + a_2 j + a_3 k) = a_0 1 + a_1 I + a_2 J + a_3 K \]
+
+  is an algebra homomorphism. That is, it's linear and respects multiplication
+  ($\varphi(ab) = \varphi(a) \varphi(b)$).
+
+  Also, you'll show in an exercise that $\varphi(\overline{a}) = \varphi(a)^*$.
+  So $\varphi$ maps 
+  $\{ a \in \mathbb{H} \mid \abs{a} = 1 \} = \{ a \in \mathbb{H} \mid a \overline{a} = 1 \}$ 
+  \emph{into} $\{ g \in M_2(\C) \mid g g^* = 1 \} = \mathsf{U}(2)$.
+
+  But why does $\varphi$ map $\{ a \in \mathbb{H} \mid \abs{a} = 1\}$ into 
+  $\mathsf{SU}(2)$?
+
+  Notice if $a \in \mathbb{H}$ then
+
+  \[
+    \varphi(a) 
+    = a_0 + a_1 I + a_2 J + a_3 K 
+    = \begin{pmatrix} a_0 - a_3 i & -a_2 = a_1 i \\ a_2 - a_1 i & a_0 + a_3 i \end{pmatrix}
+  \]
+
+  so if $\abs{a} = 1$, then we have
+
+  \begin{align*}
+    \text{det}(\varphi(a)) 
+    &= (a_0 + a_3 i)(a_0 - a_3 i) + (a_2 + a_1 i)(a_2 - a_1 i) \\
+    &= a_0^2 + a_1^2 + a_2^2 + a_3^2 \\
+    &= \abs{a} \\
+    &= 1
+  \end{align*}
+
+  and $\varphi(a) \in \mathsf{SU}(2)$.
+
+  lastly, why does $\varphi$ map $\{ a \in \mathbb{H} \mid \abs{a} = 1 \}$
+  \emph{onto} $\mathsf{SU}(2)$?
+
+  Let $g = \begin{pmatrix} \alpha & \gamma \\ \beta & \delta \end{pmatrix} \in \mathsf{SU}(2)$.
+
+  Then $g g^* = 
+  \begin{pmatrix} \alpha & \gamma \\ \beta & \delta \end{pmatrix} 
+  \begin{pmatrix} \overline{\alpha} & \overline{\beta} \\ \overline{\gamma} & \overline{\delta} \end{pmatrix} = 
+  \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$.
+
+  Looking at the coordinates of this matrix equality, we see
+
+  \begin{itemize}
+    \item $\abs{\alpha}^2 + \abs{\gamma}^2 = 1$
+    \item $\abs{\beta}^2 + \abs{\delta}^2 = 1$
+    \item $\alpha \overline{\beta} + \gamma \overline{\delta} = 0$
+  \end{itemize}
+
+  The third of these rearranges to $\gamma = \frac{- \alpha \overline{\beta}}{\overline{\delta}}$,
+  which we can substitute into $1 = \text{det}(g) = \alpha \delta - \beta \gamma$ 
+  to learn that $\overline{\delta} = \alpha (\delta \overline{\delta} + \beta \overline{\beta}) = \alpha$.
+  Of course, plugging this back into the third equation gives $\delta = - \overline{\beta}$.
+
+  Thus we actually have 
+
+  \[ g = \begin{pmatrix} \alpha & - \overline{\beta} \\ \beta & \overline{\alpha} \end{pmatrix} \]
+
+  with $\norm{\alpha}^2 + \norm{\beta}^2 = 1$.
+
+  But recall if $\abs{a} = 1$ then
+
+  \[
+    \varphi(a) 
+    = \begin{pmatrix} a_0 - a_3 i & -a_2 = a_1 i \\ a_2 - a_1 i & a_0 + a_3 i \end{pmatrix}.
+  \]
+
+  So choosing the $a_k$ to make $a_0 - a_3 i = \alpha$ and
+  $a_2 - a_1 i = \beta$ gives an element of $\{ a \in \mathbb{H} \mid \abs{a} = 1 \}$
+  with $\varphi(a) = g$.
+\end{proof}
+
+\begin{ExerciseList}
+  \Exercise Complete the above proof by showing that 
+  (in the notation of the proof) $\varphi(\overline{a}) = \varphi(a)^*$.
+\end{ExerciseList}
+
+We have seen 
+
+\begin{itemize}
+  \item $S^0 \cong \{ x \in \R \mid \abs{x} = 1 \} = \mathsf{O}(1) \cong \mathbb{Z} / 2$  
+  \item $S^1 \cong \{ x \in \C \mid \abs{x} = 1 \} = \mathsf{U}(1) \cong \mathsf{SO}(2)$
+  \item $S^3 \cong \{ x \in \mathbb{H} \mid \abs{x} = 1 \} = \mathsf{Sp}(1) \cong \mathsf{SO}(2)$
+\end{itemize}
+
+\missingfigure{A copy of $O(1)$ sitting inside $U(1)$ sitting inside $Sp(1)$.}
+
+In fact, we can define quaternionic analogues of \emph{all} our favorite Lie
+groups:
+
+\todo{should we orient this cube differently? It feels a bit weird to me
+having the largest thing in the back corner rather than the front corner\ldots
+}
+
+\todo{Also, we should redo the other diagrams to be square like this one,
+rather than tilted like I did the first time around. I don't have the 
+spoons to go back and fix it now, though.}
+
+\[\begin{tikzcd}
+	&&&&& {} \\
+	{\mathsf{GL}(n,\mathbb{R})} && {\mathsf{GL}(n,\mathbb{C})} && {\mathsf{GL}(n,\mathbb{H})} \\
+	& {\mathsf{O}(n)} && {\mathsf{U}(n)} && {\mathsf{Sp}(n)} && {} \\
+	{\mathsf{SL}(n,\mathbb{R})} && {\mathsf{SL}(n,\mathbb{C})} && {\mathsf{SL}(n,\mathbb{H})} \\
+	& {\mathsf{SO}(n)} && {\mathsf{SU}(n)} && {\mathsf{Sp}(n)}
+	\arrow[hook, from=4-1, to=2-1]
+	\arrow[hook, from=3-2, to=2-1]
+	\arrow[hook, from=5-2, to=4-1]
+	\arrow[hook, from=5-2, to=3-2]
+	\arrow[hook, from=4-3, to=2-3]
+	\arrow[hook, from=3-4, to=2-3]
+	\arrow[hook, from=5-4, to=3-4]
+	\arrow[hook, from=5-4, to=4-3]
+	\arrow[hook, from=5-2, to=5-4]
+	\arrow[hook, from=4-1, to=4-3]
+	\arrow[hook, from=3-2, to=3-4]
+	\arrow[hook, from=2-1, to=2-3]
+	\arrow[hook, from=5-4, to=5-6]
+	\arrow[hook, from=4-3, to=4-5]
+	\arrow[hook, from=2-3, to=2-5]
+	\arrow[hook, from=4-5, to=2-5]
+	\arrow[hook, from=5-6, to=4-5]
+	\arrow[Rightarrow, no head, from=5-6, to=3-6]
+	\arrow[hook, from=3-6, to=2-5]
+	\arrow[hook, from=3-4, to=3-6]
+\end{tikzcd}\]
 
 
 \end{document}
