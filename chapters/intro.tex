@@ -1109,6 +1109,41 @@ spoons to go back and fix it now, though.}
 	\arrow[hook, from=3-4, to=3-6]
 \end{tikzcd}\]
 
+Here, as you might expect,
+
+\begin{defn}
+  The \important{Quaternionic General Linear Group} is
+
+  \[ \mathsf{GL}(n, \mathbb{H}) = \{ g \in M_n(\mathbb{H}) \mid g \text{ is invertible} \} \]
+\end{defn}
+
+\begin{defn}
+  The \important{Quaternionic Special Linear Group} is
+
+  \[ \mathsf{SL}(n, \mathbb{H}) = \{ g \in M_n(\mathbb{H}) \mid \text{det}(g) = 1 \} \]
+\end{defn}
+
+\begin{defn}
+  \todo{I know you had your own name for this, and I think this was it? We should
+  say a few more words in the footnote about our choice to call it this.}
+  The \important{Quaternionic Unitary Group} is%
+  \footnote{The name $\mathsf{Sp}$ stands for \emph{symplectic}, 
+  which is another name for this lie group.}
+
+  \[ \mathsf{Sp}(n) = \{ g \in M_n(\mathbb{H}) \mid g g^* = 1 \} \]
+\end{defn}
+
+\warning -- Be careful, however! Quaternionic determinants are subtle.
+For one, they are \emph{complex} valued, rather than valued in $\mathbb{H}$ 
+as you might expect. Moreover, it turns out $g g^* = 1 \implies \text{det}(g) = 1$,
+so there are only $3$ families of quaternionic Lie groups, rather than the $4$
+we've come to expect from the real and complex versions!
+
+\todo{Should we say more about the quaternionic determinant? If not, we 
+should say that it won't matter since we won't really be needing the
+formal definition of these groups in the future. Either way we should
+provide some kind of reference.}
+
 
 \end{document}
 
